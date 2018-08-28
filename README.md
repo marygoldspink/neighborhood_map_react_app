@@ -13,6 +13,9 @@ Clone this git repositiory and then run:
 
 and then open http://localhost:3000/ in your web browser to see the app.
 
+## How to deploy the application
+
+You can also run `yarn build` to generate a compiled version of the application. See https://github.com/facebook/create-react-app#npm-run-build-or-yarn-build for more details. This will create a version with a compiled service worker which can be used to run the application as an offline application. Note that the Leaflet.js api and the Foursquare api's do not work offline.
 
 ## Technology used
 
