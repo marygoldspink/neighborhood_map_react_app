@@ -14,7 +14,7 @@ function SidebarListView(props) {
         </form>
         <ol className="siderbar-list-view" role="region" aria-label="Matching Place list">
         {props.places.map(place => {
-            return <li key={place.id} onClick={() => props.handlePlaceSelected(place)}
+            return <li tabIndex="0" role="button" key={place.id} onClick={() => props.handlePlaceSelected(place)}
                        className={place.selected ? 'active': ''}>{place.label}</li>;
         })}
         </ol>
