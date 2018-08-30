@@ -3,16 +3,20 @@ import { Map, TileLayer } from "react-leaflet";
 import MyMarker from "./MyMarker.js";
 import "leaflet/dist/leaflet.css"
 
-// a functional react component for my leaflet map.
+// A react component for my leaflet map.
 // This was based on the example code in react-leaflet here:
 // https://github.com/PaulLeCam/react-leaflet/blob/master/example/components/simple.js
 class MyMap extends React.Component {
   constructor(props) {
     super(props);
 
+    // We need to use bind here so that the this object
+    // is available within the tileerror callback.
     this.tileRef = this.tileRef.bind(this);
   }
 
+  // get a reference to the tile and then listen to
+  // tile load errors and tell the parent when one occurs.
   tileRef(refArg) {
     refArg.leafletElement.on('tileerror', (error) => {
       this.props.handleMapLoadError(error);

@@ -9,6 +9,7 @@ import SidebarListView from './SidebarListView';
 // - the initial zoom of the map
 // - the current searchText used to filter the places
 // - whether the side bar is open or not
+// - whether a map load error occured
 // - my list of 5 places. The id's are the foursquare id's
 class App extends Component {
   state = {
@@ -65,6 +66,10 @@ class App extends Component {
     });
   }
 
+  // handle when a map load error has occured.
+  // we'll set the error for 10 seconds
+  // and then remove it as I didn't see a way to detect when
+  // the tile has appeared.
   handleMapLoadError(error) {
     this.setState({
       mapLoadError: error
