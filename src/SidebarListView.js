@@ -7,7 +7,7 @@ import React from "react";
 // component too so it can highlight it in the Map.
 function SidebarListView(props) {
   return (
-    <section className="sidebar">
+    <aside className="sidebar">
         <h1 className="App-title">Hipster Shoreditch</h1>
         <form id="" className="sidebar-search-form" aria-label="Filter">
             <input aria-label="Filter places by name" role="search" placeholder="Type to filter places" className="sidebar-search-input" type="text" onChange={(event) => props.handleSearch(event.target.value)} />
@@ -18,7 +18,7 @@ function SidebarListView(props) {
                        className={place.selected ? 'active': ''}>{place.label}</li>;
         })}
         </ol>
-    </section>
+    </aside>
   );
 }
 

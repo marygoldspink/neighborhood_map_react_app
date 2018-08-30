@@ -15,6 +15,7 @@ class App extends Component {
     zoom: 17,
     searchText: '',
     showSidebar: false,
+    mapLoadError: false,
     places: [{
       id: "50b0bb32e4b03c6b1e26d2ae",
       label: "Patty & Bun",
@@ -64,6 +65,18 @@ class App extends Component {
     });
   }
 
+  handleMapLoadError(error) {
+    this.setState({
+      mapLoadError: error
+    });
+    // I'll remove the message after a few seconds in case connectivity was restored.
+    setTimeout(() => {
+      this.setState({
+        mapLoadError: false
+      });
+    }, 10000)
+  }
+
   // This handles a place being selected in the sidebar menu and sets its
   // state to be selected.
   handlePlaceSelected(place) {
@@ -96,7 +109,9 @@ class App extends Component {
           <h1 className="App-title">Hipster Shoreditch</h1>
         </header>
         <div aria-label="Map of places" role="application">
-          <MyMap position={position} zoom={this.state.zoom} places={places}></MyMap>
+          {this.state.mapLoadError ? (<div className="errorMessage">Some parts of the map could not be loaded</div>) : ''}
+          <MyMap position={position} zoom={this.state.zoom} places={places}
+                 handleMapLoadError={(error) => this.handleMapLoadError(error)}></MyMap>
         </div>
         <SidebarListView places={places} handleSearch={(text) => this.filterPlaces(text)} handlePlaceSelected={(place) => this.handlePlaceSelected(place)}></SidebarListView>
       </div>
